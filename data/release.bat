@@ -48,40 +48,17 @@ if errorlevel 1 (
 )
 )
 
-rem Manhunt Widescreen Fix
-copy /b/v/y "..\source\Manhunt.WidescreenFix\bin\Manhunt.WidescreenFix.ini" ".\Manhunt.WidescreenFix\scripts\Manhunt.WidescreenFix.ini"
-
 rem dgVoodoo
-7za e -so "..\dgVoodoo2.zip" "MS\x86\DDraw.dll" > ".\KnightRider.WidescreenFix\DDraw.dll"
-7za e -so "..\dgVoodoo2.zip" "MS\x86\D3DImm.dll" > ".\KnightRider.WidescreenFix\D3DImm.dll"
-
-7za e -so "..\dgVoodoo2.zip" "MS\x86\DDraw.dll" > ".\KnightRider2.WidescreenFix\DDraw.dll"
-7za e -so "..\dgVoodoo2.zip" "MS\x86\D3DImm.dll" > ".\KnightRider2.WidescreenFix\D3DImm.dll"
-
-7za e -so "..\dgVoodoo2.zip" "MS\x86\D3D8.dll" > ".\SplinterCell.WidescreenFix\system\d3d8.dll"
-7za e -so "..\dgVoodoo2.zip" "MS\x86\D3D8.dll" > ".\SplinterCellPandoraTomorrow.WidescreenFix\offline\system\d3d8.dll"
 
 rem Creating archives
 
-FOR /D /r %%G in ("*PPSSPP*") DO (
- cd %%~nxG
- del /S *.elf
- cd ..
-)
-
 rem Additional texture archives
-7za a "GTALCS.PPSSPP.ImVehLM\memstick\PSP\TEXTURES\ULUS10041\textures.zip" -mx=0 "..\textures\GTALCS\*" -x^^!buildps2.bat -x^^!texture_dump_alpha_scaler.py
-7za a "GTAVCS.PPSSPP.ImVehLM\memstick\PSP\TEXTURES\ULUS10160\textures.zip" -mx=0 "..\textures\GTAVCS\*" -x^^!buildps2.bat -x^^!texture_dump_alpha_scaler.py
-7za a "GTAVCS.PPSSPP.GamepadIcons\memstick\PSP\TEXTURES\ULUS10160\textures.zip" -mx=0 "..\textures\GTAVCS\*" -x^^!buildps2.bat -x^^!texture_dump_alpha_scaler.py
 
 FOR /d %%X IN (*) DO (
 7za a -tzip "Archives\%%X.zip" ".\%%X\*" -r -xr^^!Archives -x^^!*.pdb -x^^!*.db -x^^!*.ipdb -x^^!*.iobj -x^^!*.tmp -x^^!*.iobj -x^^!*.ual -x^^!*.x64ual -x^^!*.iobj -x^^!*.wrapper -x^^!*.lib -x^^!*.exp -x^^!*.ilk -x^^!*.map -x^^!*.gitkeep
 )
 
 rem Creating texture archives
-if exist "..\textures\GTA3.WidescreenFrontend" 7za a "Archives\GTA3.WidescreenFrontend.zip" "..\textures\GTA3.WidescreenFrontend"
-if exist "..\textures\GTAVC.WidescreenFrontend" 7za a "Archives\GTAVC.WidescreenFrontend.zip" "..\textures\GTAVC.WidescreenFrontend"
-if exist "..\textures\Manhunt.WidescreenFrontend" 7za a "Archives\Manhunt.WidescreenFrontend.zip" "..\textures\Manhunt.WidescreenFrontend"
 EXIT
 
 7-Zip Extra
